@@ -1,0 +1,12 @@
+body { margin: 0; background: #f7f8fb; font-family: Inter, "PingFang SC", Arial, sans-serif; color: #111827; }
+.learn { min-height: 100vh; padding: 26px; box-sizing: border-box; }
+.nav { display: flex; align-items: center; justify-content: space-between; height: 58px; margin-bottom: 22px; }
+.nav strong { font-size: 22px; }
+.actions { display: flex; gap: 10px; }
+.layout { display: grid; grid-template-columns: 1fr 360px; gap: 18px; }
+.panel { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 18px; }
+.title { font-weight: 700; margin-bottom: 14px; }
+.learn-row { display: grid; grid-template-columns: 1.2fr 1fr auto; align-items: center; gap: 18px; padding: 16px 0; border-bottom: 1px solid #edf0f5; }
+.learn-row span, .exam span { display: block; margin-top: 6px; color: #64748b; font-size: 13px; }
+.exam { display: grid; gap: 10px; padding: 14px 0; border-bottom: 1px solid #edf0f5; }
+@media (max-width: 900px) { .layout, .learn-row { grid-template-columns: 1fr; } }

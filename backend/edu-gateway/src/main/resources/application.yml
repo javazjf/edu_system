@@ -1,0 +1,40 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: edu-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: auth
+              uri: http://localhost:9001
+              predicates: [ Path=/api/auth/** ]
+            - id: system
+              uri: http://localhost:9002
+              predicates: [ Path=/api/system/** ]
+            - id: course
+              uri: http://localhost:9003
+              predicates: [ Path=/api/course/** ]
+            - id: order
+              uri: http://localhost:9004
+              predicates: [ Path=/api/order/** ]
+            - id: learning
+              uri: http://localhost:9005
+              predicates: [ Path=/api/learning/** ]
+            - id: exam
+              uri: http://localhost:9006
+              predicates: [ Path=/api/exam/** ]
+            - id: marketing
+              uri: http://localhost:9007
+              predicates: [ Path=/api/marketing/** ]
+            - id: message
+              uri: http://localhost:9008
+              predicates: [ Path=/api/message/** ]
+            - id: statistics
+              uri: http://localhost:9009
+              predicates: [ Path=/api/statistics/** ]

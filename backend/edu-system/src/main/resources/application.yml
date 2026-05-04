@@ -1,0 +1,9 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: edu-system
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
