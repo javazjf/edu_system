@@ -20,9 +20,7 @@
 ## 快速启动
 
 ```bash
-docker compose up -d
-cd backend
-mvn clean package
+scripts/start-backend.sh
 ```
 
 前端：

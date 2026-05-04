@@ -19,6 +19,24 @@
 - Maven 3.9+
 - Docker Compose 中的 MySQL、Redis、MinIO、Elasticsearch、Nacos
 
+## 一键启动
+
+从项目根目录执行：
+
+```bash
+scripts/start-backend.sh
+```
+
+常用选项：
+
+```bash
+scripts/start-backend.sh --skip-build
+scripts/start-backend.sh --skip-docker
+scripts/stop-backend.sh
+```
+
+启动日志位于 `.run/logs/`，进程号位于 `.run/pids/`。
+
 ## 主流程接口
 
 - `POST /api/auth/login`
