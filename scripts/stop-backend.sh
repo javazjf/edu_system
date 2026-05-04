@@ -4,6 +4,10 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PID_DIR="$ROOT_DIR/.run/pids"
 
+if command -v docker >/dev/null 2>&1; then
+  docker compose -f "$ROOT_DIR/docker-compose.backend.yml" down >/dev/null 2>&1 || true
+fi
+
 if [[ ! -d "$PID_DIR" ]]; then
   echo "No backend pid directory found."
   exit 0

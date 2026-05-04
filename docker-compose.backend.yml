@@ -1,0 +1,120 @@
+x-java-service: &java-service
+  image: eclipse-temurin:21-jre
+  restart: unless-stopped
+  working_dir: /app
+  environment:
+    NACOS_SERVER_ADDR: nacos:8848
+  networks:
+    - default
+
+services:
+  edu-auth:
+    <<: *java-service
+    container_name: edu-auth
+    volumes:
+      - ./backend/edu-auth/target/edu-auth-0.1.0-SNAPSHOT.jar:/app/app.jar:ro
+    command: ["java", "-jar", "/app/app.jar"]
+    ports:
+      - "9001:9001"
+
+  edu-system:
+    <<: *java-service
+    container_name: edu-system
+    volumes:
+      - ./backend/edu-system/target/edu-system-0.1.0-SNAPSHOT.jar:/app/app.jar:ro
+    command: ["java", "-jar", "/app/app.jar"]
+    ports:
+      - "9002:9002"
+
+  edu-course:
+    <<: *java-service
+    container_name: edu-course
+    volumes:
+      - ./backend/edu-course/target/edu-course-0.1.0-SNAPSHOT.jar:/app/app.jar:ro
+    command: ["java", "-jar", "/app/app.jar"]
+    ports:
+      - "9003:9003"
+
+  edu-order:
+    <<: *java-service
+    container_name: edu-order
+    volumes:
+      - ./backend/edu-order/target/edu-order-0.1.0-SNAPSHOT.jar:/app/app.jar:ro
+    command: ["java", "-jar", "/app/app.jar"]
+    ports:
+      - "9004:9004"
+
+  edu-learning:
+    <<: *java-service
+    container_name: edu-learning
+    volumes:
+      - ./backend/edu-learning/target/edu-learning-0.1.0-SNAPSHOT.jar:/app/app.jar:ro
+    command: ["java", "-jar", "/app/app.jar"]
+    ports:
+      - "9005:9005"
+
+  edu-exam:
+    <<: *java-service
+    container_name: edu-exam
+    volumes:
+      - ./backend/edu-exam/target/edu-exam-0.1.0-SNAPSHOT.jar:/app/app.jar:ro
+    command: ["java", "-jar", "/app/app.jar"]
+    ports:
+      - "9006:9006"
+
+  edu-marketing:
+    <<: *java-service
+    container_name: edu-marketing
+    volumes:
+      - ./backend/edu-marketing/target/edu-marketing-0.1.0-SNAPSHOT.jar:/app/app.jar:ro
+    command: ["java", "-jar", "/app/app.jar"]
+    ports:
+      - "9007:9007"
+
+  edu-message:
+    <<: *java-service
+    container_name: edu-message
+    volumes:
+      - ./backend/edu-message/target/edu-message-0.1.0-SNAPSHOT.jar:/app/app.jar:ro
+    command: ["java", "-jar", "/app/app.jar"]
+    ports:
+      - "9008:9008"
+
+  edu-statistics:
+    <<: *java-service
+    container_name: edu-statistics
+    volumes:
+      - ./backend/edu-statistics/target/edu-statistics-0.1.0-SNAPSHOT.jar:/app/app.jar:ro
+    command: ["java", "-jar", "/app/app.jar"]
+    ports:
+      - "9009:9009"
+
+  edu-gateway:
+    <<: *java-service
+    container_name: edu-gateway
+    environment:
+      NACOS_SERVER_ADDR: nacos:8848
+      EDU_AUTH_URI: http://edu-auth:9001
+      EDU_SYSTEM_URI: http://edu-system:9002
+      EDU_COURSE_URI: http://edu-course:9003
+      EDU_ORDER_URI: http://edu-order:9004
+      EDU_LEARNING_URI: http://edu-learning:9005
+      EDU_EXAM_URI: http://edu-exam:9006
+      EDU_MARKETING_URI: http://edu-marketing:9007
+      EDU_MESSAGE_URI: http://edu-message:9008
+      EDU_STATISTICS_URI: http://edu-statistics:9009
+    volumes:
+      - ./backend/edu-gateway/target/edu-gateway-0.1.0-SNAPSHOT.jar:/app/app.jar:ro
+    command: ["java", "-jar", "/app/app.jar"]
+    ports:
+      - "8080:8080"
+    depends_on:
+      - edu-auth
+      - edu-system
+      - edu-course
+      - edu-order
+      - edu-learning
+      - edu-exam
+      - edu-marketing
+      - edu-message
+      - edu-statistics

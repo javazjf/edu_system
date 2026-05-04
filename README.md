@@ -23,6 +23,12 @@
 scripts/start-backend.sh
 ```
 
+如果本机没有 Java 21 / Maven，但 Docker 可用：
+
+```bash
+scripts/start-backend.sh --runtime docker --build docker
+```
+
 前端：
 
 ```bash

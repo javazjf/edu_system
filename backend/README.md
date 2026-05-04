@@ -27,11 +27,18 @@
 scripts/start-backend.sh
 ```
 
+如果本机没有 Java 21 / Maven，但 Docker 可用，可以直接使用 Docker 里的 JDK 21 和 Maven：
+
+```bash
+scripts/start-backend.sh --runtime docker --build docker
+```
+
 常用选项：
 
 ```bash
 scripts/start-backend.sh --skip-build
 scripts/start-backend.sh --skip-docker
+scripts/start-backend.sh --runtime docker --build docker
 scripts/stop-backend.sh
 ```
 
